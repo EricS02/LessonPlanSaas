@@ -5,6 +5,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { notFound, redirect } from "next/navigation";
 import React from "react";
 import { LessonPlan, Section } from "@prisma/client";
+import { Metadata } from "next";
 
 const logger = {
   info: console.log,
@@ -15,6 +16,7 @@ type Props = {
   params: {
     id: string;
   };
+  searchParams: { [key: string]: string | string[] | undefined };
 };
 
 const PlanPage = async ({ params }: Props) => {
