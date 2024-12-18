@@ -11,13 +11,13 @@ const logger = {
   error: console.error,
 };
 
-const page = async ({
-  params,
-}: {
+type Props = {
   params: {
     id: string;
   };
-}) => {
+};
+
+const PlanPage = async ({ params }: Props) => {
   logger.info("Fetching user session.");
 
   const { getUser } = getKindeServerSession();
@@ -70,4 +70,4 @@ const page = async ({
   );
 };
 
-export default page;
+export default PlanPage;
