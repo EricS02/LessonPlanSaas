@@ -1,4 +1,5 @@
 Design Inspiring Lesson Plans 🖍️
+
 Welcome to the Design Inspiring Lesson Plans project! 🎓 This platform is here to streamline the creation of meaningful and engaging lesson plans. Whether you’re a teacher in search of fresh ideas or a curriculum designer crafting resources, we’re here to assist!
 
 💡💡💡
