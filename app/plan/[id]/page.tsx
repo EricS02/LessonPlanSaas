@@ -12,14 +12,11 @@ const logger = {
   error: console.error,
 };
 
-type Props = {
-  params: {
-    id: string;
-  };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
-const PlanPage = async ({ params }: Props) => {
+const PlanPage = async ({
+  params,
+}: {
+  params: { id: string }
+}) => {
   logger.info("Fetching user session.");
 
   const { getUser } = getKindeServerSession();
