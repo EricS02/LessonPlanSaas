@@ -5,18 +5,14 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { notFound, redirect } from "next/navigation";
 import React from "react";
 import { LessonPlan, Section } from "@prisma/client";
-import { Metadata } from "next";
 
 const logger = {
   info: console.log,
   error: console.error,
 };
 
-const PlanPage = async ({
-  params,
-}: {
-  params: { id: string }
-}) => {
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   logger.info("Fetching user session.");
 
   const { getUser } = getKindeServerSession();
@@ -28,7 +24,7 @@ const PlanPage = async ({
   } catch (error) {
     logger.error("Error fetching user session:", error);
     redirect("/");
-    return; // Ensure early return after redirect
+    return;
   }
   if (!user) {
     console.warn("User not found, redirecting to home.");
@@ -36,14 +32,14 @@ const PlanPage = async ({
     return; // Ensure early return after redirect
   }
 
-  logger.info(`Fetching lesson plan for user ID: ${user.id} and lesson plan ID: ${params.id}`);
+  logger.info(`Fetching lesson plan for user ID: ${user.id} and lesson plan ID: ${id}`);
 
   let lessonPlan;
   
   try {
     lessonPlan = await prisma.lessonPlan.findFirst({
       where: {
-        id: params.id,
+        id: id,
         userId: user.id,
       },
       include: {
@@ -56,7 +52,7 @@ const PlanPage = async ({
     return notFound(); // You may also want to return an error page or log this
   }
   if (!lessonPlan) {
-    logger.error(`Lesson plan not found for ID: ${params.id}`);
+    logger.error(`Lesson plan not found for ID: ${id}`);
     return notFound();
   }
 
@@ -67,6 +63,4 @@ const PlanPage = async ({
       <Plan lessonPlan={lessonPlan as LessonPlan & { sections: Section[] }} />
     </MaxWidthWrapper>
   );
-};
-
-export default PlanPage;
+}
