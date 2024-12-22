@@ -43,6 +43,5 @@
   },
   "scripts": {
   "postinstall": "prisma generate",
-  "build": "next build && npx prisma migrate deploy"
 }
 }
