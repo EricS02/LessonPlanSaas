@@ -79,7 +79,7 @@ function TestimonialsSection() {
           <Card key={index}>
             <CardHeader>
               <CardTitle>{testimonial.name}</CardTitle>
-              <CardDescription>{testimonial.description}</CardDescription>
+              <CardDescription>{testimonial.role}</CardDescription>
             </CardHeader>
             <CardContent>
             <p className="italic">{testimonial.quote}</p>
