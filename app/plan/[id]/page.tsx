@@ -63,8 +63,4 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
       <Plan lessonPlan={lessonPlan as LessonPlan & { sections: Section[] }} />
     </MaxWidthWrapper>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 1a86c771dd6585657bf554a2fadf314e4474e8d0
